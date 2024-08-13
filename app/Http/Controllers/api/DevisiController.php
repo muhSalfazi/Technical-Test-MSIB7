@@ -13,7 +13,7 @@ class DevisiController extends Controller
     {
         // Validate input
         $validator = Validator::make($request->all(), [
-            'name' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -24,14 +24,16 @@ class DevisiController extends Controller
             ], 400);
         }
 
-        $name = $request->input('name');
-
+        $name = $request->query('name');
+        
         $query = Devisi::query();
 
+       
         if ($name) {
             $query->where('name', 'like', '%' . $name . '%');
         }
 
+        // Paginate results
         $divisions = $query->paginate(10);
 
         return response()->json([
