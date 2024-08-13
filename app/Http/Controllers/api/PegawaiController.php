@@ -29,10 +29,10 @@ class PegawaiController extends Controller
                 'status' => 'error',
                 'message' => 'Invalid input',
                 'errors' => $validator->errors(),
-            ], 422); // Use 422 for validation errors
+            ], 422); 
         }
 
-        // Retrieve validated data
+        
         $validatedData = $validator->validated();
 
         // Log the received parameters for debugging
