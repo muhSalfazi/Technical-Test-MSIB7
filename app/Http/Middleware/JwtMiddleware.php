@@ -31,9 +31,9 @@ class JwtMiddleware
             // Tambahkan logika di sini untuk mendeteksi apakah token invalid karena logout
             if (str_contains($e->getMessage(), 'The token has been blacklisted')) {
                 return response()->json([
-                    'status' => 'success',
+                    'status' => 'error',
                     'message' => 'Anda sudah berhasil logout'
-                ], 200);
+                ], 403);
             }
 
             return response()->json([
@@ -46,9 +46,9 @@ class JwtMiddleware
             // Tambahkan logika di sini untuk mendeteksi apakah token invalid karena logout
             if (str_contains($e->getMessage(), 'The token has been blacklisted')) {
                 return response()->json([
-                    'status' => 'success',
+                    'status' => 'error',
                     'message' => 'Anda sudah berhasil logout'
-                ], 200);
+                ], 403);
             }
 
             return response()->json([
