@@ -17,6 +17,8 @@ class JwtMiddleware
         try {
             // Cek jika token diberikan dan autentikasi
             $user = JWTAuth::parseToken()->authenticate();
+
+        
         } catch (TokenExpiredException $e) {
             Log::error('Token expired: ' . $e->getMessage());
             return response()->json([
