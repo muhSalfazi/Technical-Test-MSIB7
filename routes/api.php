@@ -16,8 +16,9 @@ use App\Http\Controllers\api\PegawaiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1'); // 10 requests per minute
+Route::middleware(['guest.jwt', 'throttle:5,1'])->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+});
 
 Route::middleware('auth.jwt')->group(function () {
     // api devisi
