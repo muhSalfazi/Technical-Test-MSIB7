@@ -67,18 +67,19 @@ class PegawaiController extends Controller
         $formattedEmployees = $employees->items(); // Use items() instead of getCollection()
 
         $formattedEmployees = collect($formattedEmployees)->map(function ($employee) {
-            return [
-                'id' => $employee->id,
-                'image' => $employee->image ? asset($employee->image) : null,
-                'name' => $employee->name,
-                'phone' => $employee->phone,
-                'division' => [
-                    'id' => $employee->division ? $employee->division->id : null,
-                    'name' => $employee->division ? $employee->division->name : null,
-                ],
-                'position' => $employee->position,
-            ];
-        });
+    return [
+        'id' => $employee->id,
+        'image' => $employee->image ? asset("https://msib07.muhsalfazi.my.id/" . $employee->image) : null,
+        'name' => $employee->name,
+        'phone' => $employee->phone,
+        'division' => [
+            'id' => $employee->division ? $employee->division->id : null,
+            'name' => $employee->division ? $employee->division->name : null,
+        ],
+        'position' => $employee->position,
+    ];
+});
+
 
         return response()->json([
             'status' => 'success',
